@@ -1,0 +1,6 @@
+{
+  "project": "serverless-s1ldck",
+  "projectBucket": "serverless.us-east-1.serverless-s1ldck",
+  "domain": "serverless-s1ldck",
+  "notificationEmail": "me@serverless-s1ldck.com"
+}

@@ -1,0 +1,25 @@
+{
+  "apiRequestPostCreateTemplate":{
+    "application/json":{
+      "operation":"create",
+      "tableName": "blog-posts",
+      "payload":{
+        "Item":{
+          "content": "$input.json('$')"
+        }
+      }
+    }
+  },
+  "apiRequestPostReadTemplate":{
+    "application/json":{
+      "operation":"read",
+      "tableName": "blog-posts",
+      "payload":{
+        "Key":{
+          "postId": "$input.params('postId')"
+        }
+      }
+    }
+  },
+  "apiResponsePostReadTemplate": "{\"post\":\"postId\":\"$input.path('$').Item.postId\",\"content\":{\"user\":\"$input.path('$').Item.content.user\",\"message\":\"$input.path('$').Item.content.massage\"}}"
+}

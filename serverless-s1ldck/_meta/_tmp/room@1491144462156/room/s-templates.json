@@ -1,0 +1,64 @@
+{
+  "apiRequestPostCreateTemplate": {
+    "application/json": {
+      "operation": "create",
+      "tableName": "room",
+      "payload": {
+        "Item": {
+          "content": "$input.json('$')"
+        }
+      }
+    }
+  },
+  "apiRequestPostReadTemplate": {
+    "application/json": {
+      "operation": "read",
+      "tableName": "room",
+      "payload": {
+        "Key": {
+          "postId": "$input.params('roomId')"
+        }
+      }
+    }
+  },
+  "apiRequestPostUpdateTemplate": {
+    "application/json": {
+      "operation": "update",
+      "tableName": "room",
+      "payload": {
+        "Key": {
+          "postId": "$input.params('roomId')"
+        },
+        "UpdateExpression": "set content = :c",
+        "ExpressionAttributeValues": {
+          ":c": "$input.json('$')"
+        }
+      }
+    }
+  },
+  "apiRequestPostDeleteTemplate": {
+    "application/json": {
+      "operation": "delete",
+      "tableName": "room",
+      "payload": {
+        "Key": {
+          "postId": "$input.params('roomId')"
+        },
+        "ConditionExpression": "roomId = :p",
+        "ExpressionAttributeValues": {
+          ":p": "$input.params('roomId')"
+        }
+      }
+    }
+  },
+  "apiRequestPostListTemplate": {
+    "application/json": {
+      "operation": "list",
+      "tableName": "room",
+      "payload": {}
+    }
+  },
+  "apiResponsePostCreateTemplate": "{\"roomId\":\"$input.path('$').roomId\"}",
+  "apiResponsePostReadTemplate": "{\"room\": {\"roomId\":\"$input.path('$').Item.roomId\", \"content\":{\"user\":\"$input.path('$').Item.content.user\",\"message\":\"$input.path('$').Item.content.message\"}}}",
+  "apiResponsePostListTemplate": "{\"rooms\" : [#foreach($room in $input.path('$').Items){\"postId\" : \"$room.roomId\",\"content\" : { \"user\":\"$room.content.user\",\"message\":\"$room.content.message\" }}#if($foreach.hasNext),#end #end ] }"
+}

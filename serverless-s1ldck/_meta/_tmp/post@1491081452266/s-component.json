@@ -1,0 +1,5 @@
+{
+  "name": "blog",
+  "runtime": "nodejs6.10.0",
+  "custom": {}
+}
